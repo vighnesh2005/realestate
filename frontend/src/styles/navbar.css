@@ -1,0 +1,77 @@
+.navbar{
+    height:60px;
+    width:100vw;
+    background-color: #222831;
+    display:flex;
+    
+    align-items: center;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    color: #EEEEEE;
+    font-size: x-large;
+    padding: 20px;
+    font-weight: bolder;
+}
+
+.logo:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.CITY {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  z-index: 2;
+}
+
+.buyin {
+  background-color: rgba(0, 0, 0, 0);
+  border: solid 2px white;
+  font-size: 30px;
+  color: #EEEEEE;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #393E46;
+  padding: 10px;
+  border: 1px solid #EEEEEE;
+  border-radius: 4px;
+  z-index: 100;
+  min-width: 150px;
+}
+
+
+.search {
+  font-size: 30px;
+  color: #EEEEEE;
+  margin: 0 30px;
+  cursor: pointer;
+}
+
+
+.search input {
+  width: 500px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  padding-left: 10px;
+}
+
+.search select {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  padding-left: 10px;
+}
