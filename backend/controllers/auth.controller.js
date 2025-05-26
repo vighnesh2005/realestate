@@ -63,5 +63,10 @@ export const signup = async (req, res) => {
 }
 
 export const logout = async (req, res) => {
-    return res.status(200).json({message : "logout successfull"});
-}  
+    res.clearCookie("jwt", {
+        httpOnly: true,
+        sameSite: "Lax", 
+        secure: false,
+    });
+    return res.status(200).json({ message: "Logout successfull" });
+};

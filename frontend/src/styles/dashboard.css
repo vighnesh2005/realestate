@@ -1,0 +1,83 @@
+.Hero{
+    display: flex;
+    height: 70vh;
+    width: 100vw;
+    background-image: url("../../images/house.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Hero h1{
+    font-family:cursive;
+    font-size: 4vw;
+    padding: 40px;
+    text-shadow: 2px 2px 1px gray;
+
+}
+
+.Hero a{
+    text-decoration: none;
+    background-color: black;
+    font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+}
+
+.Hero a:hover{
+    background-color: white;
+    color: black;
+    transition: 0.3s ease-in-out;
+}
+
+.dashboard-stats {
+  width: 100%;                   /* Changed from 100vw */
+  box-sizing: border-box;        /* Ensures padding doesn’t add overflow */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px 30px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  min-width: 200px;
+  flex: 1 1 200px;             
+  max-width: 300px;
+  text-align: center;
+}
+
+.stat-box h2 {
+  font-size: 2rem;
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .stat-box h2 {
+    font-size: 1.5rem;
+  }
+
+  .stat-box p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-box {
+    width: 90%;
+  }
+}

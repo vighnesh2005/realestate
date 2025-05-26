@@ -80,3 +80,7 @@ export const editprof = async (req,res)=>{
     }
 }
 
+export const getprofile = async (req,res) => {
+  const user = req.user;
+  res.status(200).json(user);
+}
