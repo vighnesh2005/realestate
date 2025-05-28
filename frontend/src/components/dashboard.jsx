@@ -1,4 +1,4 @@
-
+import Maps from './maps';
 function Dashboard(){
     return (
         <>
@@ -20,6 +20,7 @@ function Dashboard(){
             <p>Happy Clients</p>
             </div>
         </div>
+        <Maps></Maps>
         </>
     )
 }

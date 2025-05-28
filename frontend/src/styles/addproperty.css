@@ -1,0 +1,179 @@
+/* Use a modern, readable font stack for real estate feel */
+.addproperty-form,
+.addproperty-form input,
+.addproperty-form select,
+.addproperty-form textarea,
+.addproperty-form button {
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'Liberation Sans', sans-serif;
+  letter-spacing: 0.01em;
+  color: #22304a;
+}
+
+.addproperty-form{
+    padding: 20px;
+    margin: 20px;
+}
+/* Headings and labels: slightly bolder, more spacing */
+.addproperty-form label {
+  font-weight: 600;
+  color: #1a2536;
+  margin: 0 0 10px 0;
+  padding-left: 2px;
+  font-size: 1.08rem;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+}
+
+/* Inputs, selects, textareas: clean, soft background, clear border */
+.addproperty-form input,
+.addproperty-form select,
+.addproperty-form textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #e0e4ea;
+  border-radius: 0;
+  font-size: 1.08rem;
+  padding: 18px 14px 14px 14px;
+  margin-bottom: 0;
+  background: #f7f9fb;
+  transition: border-color 0.2s, background 0.2s;
+  box-sizing: border-box;
+  color: #22304a;
+}
+
+.addproperty-form input:focus,
+.addproperty-form select:focus,
+.addproperty-form textarea:focus {
+  border-bottom: 2.5px solid #2d7ff9;
+  outline: none;
+  background: #f0f6ff;
+}
+
+.addproperty-form .form-group {
+  padding: 0 0 28px 0;
+  border-bottom: 1.5px solid #e0e4ea;
+  margin-bottom: 0;
+}
+
+.addproperty-form .form-group:last-child {
+  border-bottom: none;
+}
+
+.addproperty-form button[type="submit"] {
+  background: linear-gradient(90deg, #2d7ff9 0%, #1cb5e0 100%);
+  color: #fff;
+  border: none;
+  padding: 20px 0;
+  border-radius: 6px;
+  font-size: 1.18rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 36px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px rgba(44, 123, 255, 0.08);
+  letter-spacing: 0.04em;
+}
+
+.addproperty-form button[type="submit"]:hover {
+  background: linear-gradient(90deg, #1cb5e0 0%, #2d7ff9 100%);
+  box-shadow: 0 4px 18px rgba(44, 123, 255, 0.13);
+}
+
+.image-preview-list {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 18px 0 0 0;
+  padding: 0;
+}
+
+.image-preview-item {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px solid #e0e4ea;
+  background: #f7f9fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 6px rgba(44, 123, 255, 0.04);
+}
+
+.image-preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.remove-image-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #e63946;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background 0.2s;
+  box-shadow: 0 1px 4px rgba(230,57,70,0.10);
+}
+
+.remove-image-btn:hover {
+  background: #b71c1c;
+}
+
+/* Desktop styles */
+@media (min-width: 700px) {
+  .addproperty-form {
+    max-width: 950px;
+    margin: 0 auto;
+    font-size: 1.15rem;
+    padding: 0;
+  }
+  .addproperty-form input,
+  .addproperty-form select,
+  .addproperty-form textarea {
+    font-size: 1.15rem;
+    padding: 24px 18px 18px 18px;
+  }
+  .addproperty-form .form-group {
+    padding-bottom: 38px;
+  }
+  .image-preview-item {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
+.addproperty-form input[type="file"] {
+  display: none;
+}
+
+.custom-file-label {
+  display: inline-block;
+  padding: 12px 22px;
+  background: #f7f9fb;
+  border: 2px solid #e0e4ea;
+  border-radius: 6px;
+  color: #22304a;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 10px;
+  transition: border 0.2s, background 0.2s;
+
+}
+
+.custom-file-label:hover {
+  background: #f0f6ff;
+  border-color: #2d7ff9;
+}

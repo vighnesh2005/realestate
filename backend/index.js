@@ -7,6 +7,7 @@ import proproutes from './routes/property.routes.js';
 import searchroutes from './routes/search.routes.js';
 import reviewroutes from './routes/review.routes.js'
 import editroutes from "./routes/edit.routes.js"
+import { v2 as cloudinary } from "cloudinary";
 
 dotenv.config({ path: "./.env" });
 
@@ -27,11 +28,23 @@ app.use("/api/search",searchroutes);
 app.use("/api/review",reviewroutes);
 app.use("/api/edit",editroutes);
 
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API,
+  api_secret: process.env.CLOUDINARY_SECRET,
 });
 
+app.post("/delete-image", async (req, res) => {
+  const { public_id } = req.body;
+
+  try {
+    const result = await cloudinary.uploader.destroy(public_id);
+    res.json({ success: true, result });
+  } catch (err) {
+    console.error("Error deleting image:", err);
+    res.status(500).json({ success: false, message: "Delete failed" });
+  }
+});
 app.listen(3000, () => {  
   console.log('Server is running on port 3000');
 });

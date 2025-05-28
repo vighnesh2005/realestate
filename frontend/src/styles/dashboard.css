@@ -81,3 +81,230 @@
     width: 90%;
   }
 }
+
+.property-card {
+  display: flex;
+  flex-direction: row;
+  max-width: 720px;
+  margin: 30px auto;
+  background: #fff;
+  border: solid 1px #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: "Segoe UI", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.property-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.property-img-container {
+  position: relative;
+  width: 40%;
+  min-height: 220px; /* Ensures a minimum height for the image area */
+  max-height: 100%;
+  overflow: hidden;
+  background: #f5f5f5;
+  display: flex;
+  align-items: stretch;
+}
+
+.property-content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.property-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #2c3e50;
+}
+
+.property-header p {
+  margin: 4px 0 12px;
+  color: #555;
+  font-size: 14px;
+}
+
+.property-details div {
+  font-size: 14px;
+  color: #333;
+  margin: 4px 0;
+}
+
+/* 🔁 Responsive Design */
+@media (max-width: 768px) {
+  .property-card {
+    flex-direction: column;
+    max-width: 90%;
+  }
+
+  .property-img {
+    width: 100%;
+    height: 220px;
+  }
+}
+
+.edit-link a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.edit-link a:hover {
+  background-color: #0056b3;
+}
+
+.property-like-icon {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 2.2rem;
+  color: #bbb;
+  background: rgba(255,255,255,0.92);
+  border-radius: 50%;
+  padding: 7px 9px 7px 10px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(230,57,70,0.10);
+  cursor: pointer;
+  transition: color 0.2s, box-shadow 0.2s, background 0.2s;
+  outline: none;
+  border: none;
+}
+
+.property-like-icon.liked {
+  color: #e63946;
+  background: rgba(255,255,255,0.98);
+  box-shadow: 0 4px 16px rgba(230,57,70,0.18);
+  animation: heart-pop 0.25s;
+}
+
+.property-like-icon:active {
+  transform: scale(0.93);
+}
+
+@keyframes heart-pop {
+  0% { transform: scale(1); }
+  60% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+
+
+
+.myproperty-card-outer {
+  display: flex;
+  align-items: stretch;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(30,40,80,0.07);
+  border: 1px solid #ececec;
+  min-height: 260px;
+  max-height: 280px;
+  height: 280px;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 36px;
+  transition: box-shadow 0.2s;
+}
+
+.myproperty-card-img {
+  width: 340px;
+  min-width: 220px;
+  max-width: 340px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px 0 0 20px;
+  background: #f7f7f7;
+  flex-shrink: 0;
+  display: block;
+}
+
+.myproperty-card-body {
+  flex: 1;
+  padding: 38px 38px 38px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.myproperty-card-header {
+  margin-bottom: 14px;
+}
+
+.myproperty-card-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #22304a;
+  margin: 0 0 6px 0;
+  letter-spacing: 0.01em;
+}
+
+.myproperty-card-address {
+  color: #6b7280;
+  font-size: 1.13rem;
+  margin: 0;
+}
+
+.myproperty-card-details {
+  font-size: 1.13rem;
+  color: #2c3e50;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px 0;
+}
+
+.myproperty-card-details strong {
+  font-size: 1.12rem;
+  color: #222;
+}
+
+.myproperty-card-edit-link {
+  margin-top: 18px;
+}
+
+.myproperty-card-edit-link a {
+  color: #1a237e;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1.5px solid #1a237e;
+  transition: color 0.2s, border 0.2s;
+  font-size: 1.08rem;
+}
+
+.myproperty-card-edit-link a:hover {
+  color: #3949ab;
+  border-bottom: 2px solid #3949ab;
+}
+
+@media (max-width: 900px) {
+  .myproperty-card-outer {
+    flex-direction: column;
+    min-height: 320px;
+    max-height: none;
+    height: auto;
+  }
+  .myproperty-card-img {
+    width: 100%;
+    min-width: 0;
+    max-width: 100vw;
+    height: 180px;
+    border-radius: 20px 20px 0 0;
+  }
+  .myproperty-card-body {
+    padding: 18px 14px 18px 14px;
+  }
+}

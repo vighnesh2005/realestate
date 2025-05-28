@@ -1,19 +1,20 @@
 import db from '../db/db.js'
 
 export const search = async (req,res)=>{
-    const { category, bedrooms, priceLow, priceHigh, type, latitude, longitude } = req.body;
-    const userid = req.user?.id;
-    const isLoggedIn = userid !== undefined && userid !== null && userid !== '';
+    const { category, bedrooms, priceLow, priceHigh, type, latitude, longitude,isLoggedIn } = req.body;
+    let userid = null;
+    if(isLoggedIn === true)
+     userid = req.body.id;
 
-let query = `
+let query = ` 
   SELECT DISTINCT ON (p.id)
     p.*, 
     u.username AS owner, 
     ph.url AS image
-    ${isLoggedIn ? `, CASE WHEN l.id IS NOT NULL THEN true ELSE false END AS liked` : ''}
+    ${isLoggedIn === true ? `, CASE WHEN l.id IS NOT NULL THEN true ELSE false END AS liked` : ''}
   FROM properties AS p
   LEFT JOIN users AS u ON u.id = p.user_id
-  ${isLoggedIn ? `LEFT JOIN liked AS l ON l.propertyid = p.id AND l.userid = $1` : ''}
+  ${isLoggedIn === true ? `LEFT JOIN liked AS l ON l.propertyid = p.id AND l.userid = $1` : ''}
   LEFT JOIN (
     SELECT DISTINCT ON (property_id) property_id, url
     FROM photos
@@ -22,26 +23,26 @@ let query = `
   WHERE 1=1
 `;
 
-let values = isLoggedIn ? [userid] : [];
-let paramIndex = isLoggedIn ? 2 : 1;
+let values = isLoggedIn === true ? [userid] : [];
+let paramIndex = isLoggedIn === true ? 2 : 1;
 
-    if (category) {
+    if (category && category !== '') {
     query += ` AND p.category = $${paramIndex++}`;
     values.push(category);
     }
-    if (bedrooms) {
+    if (bedrooms && bedrooms !== '') {
     query += ` AND p.bedrooms = $${paramIndex++}`;
     values.push(parseInt(bedrooms));
     }
-    if (priceLow) {
+    if (priceLow && priceLow !== '') {
     query += ` AND p.price >= $${paramIndex++}`;
     values.push(parseFloat(priceLow));
     }
-    if (priceHigh) {
+    if (priceHigh && priceHigh !== '') {
     query += ` AND p.price <= $${paramIndex++}`;
     values.push(parseFloat(priceHigh));
     }
-    if (type) {
+    if (type && type !== '') {
     query += ` AND p.type = $${paramIndex++}`;
     values.push(type);
     }
@@ -59,17 +60,17 @@ let paramIndex = isLoggedIn ? 2 : 1;
     paramIndex += 2;
     } 
 
-    query += ` LIMIT 50`;
+    query += ` LIMIT 50 `;
 
     try {
     const results = await db.query(query, values)
     if(results.rowCount > 0)
         res.status(200).json(results.rows)  ;
     else    
-        res.status(200).json({message: "no such results"});        
+        res.status(200).json([]);        
     } catch (error) {
         console.log(error);
-        res.status(400).json({message:"Internal server error"});
+        res.status(400).json([]);
     }
     ;
 }

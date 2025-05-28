@@ -88,7 +88,7 @@ export const like = async (req, res) => {
     res.status(200).json({ message: "Liked successfully" });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Error liking property" });
+    res.status(500).json({ message: "Error liking property" });
   }
 };
 
@@ -126,10 +126,32 @@ const results = await db.query(`
 
 res.status(200).json(results.rows);
 
-
   } catch (error) {
     console.error(err);
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
 
+export const getmyprops = async (req,res)=>{
+  try {
+      const results = await db.query(`
+        SELECT 
+          p.*, 
+          ph.url AS image, 
+          u.username AS owner 
+        FROM properties AS p
+         LEFT JOIN (
+    SELECT DISTINCT ON (property_id) property_id, url
+    FROM photos
+    ORDER BY property_id, id
+  ) ph ON ph.property_id = p.id
+        LEFT JOIN users AS u ON u.id = p.user_id
+        WHERE p.user_id = $1
+      `, [parseInt(req.user.id)]);
+
+    res.status(200).json(results.rows);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json("Internal server error");
+  }
+}

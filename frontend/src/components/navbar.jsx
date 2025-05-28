@@ -1,52 +1,57 @@
 import { useContext, useState } from "react";
 import axios from 'axios';
 import { context } from '../context/context.js';
+import { Link } from 'react-router-dom';
 
-function Navbar(){
-    const {isLoggedIn,setIsLoggedIn} = useContext(context);
-    const url = import.meta.env.VITE_URL; 
-        const handleLogout = async ()=>{
-            try {
-                console.log(url);
-                const result = await axios.post(`${url}/api/auth/logout`, {}, {
-                    withCredentials: true,
-                    headers: {
+function Navbar() {
+    const { isLoggedIn, setIsLoggedIn } = useContext(context);
+    const url = import.meta.env.VITE_URL;
+
+    const handleLogout = async () => {
+        try {
+            console.log(url);
+            const result = await axios.post(`${url}/api/auth/logout`, {}, {
+                withCredentials: true,
+                headers: {
                     "Content-Type": "application/json",
-                    }  
-                });
-                if(result.data.message === "Logout successfull"){
-                    alert("Loggout Successfull");
-                    setIsLoggedIn(false);
-                }        
-            } catch (error) {
-                alert("loggout failed");
-                console.log(error);
+                }
+            });
+            if (result.data.message === "Logout successfull") {
+                alert("Loggout Successfull");
+                setIsLoggedIn(false);
             }
+        } catch (error) {
+            alert("loggout failed");
+            console.log(error);
         }
-    return(
-        <>
-        <nav className="navbar">
-            <a href="" className="links"><h1>Homely</h1></a>
-            <a href="" className="links">home</a>
-            <a href="" className="links">Liked properties   </a>
-            <a href="" className="links">buy</a>
-            <a href="" className="links">pg</a>
-            <a href="" className="links">rent</a>
+    }
 
-            {
-        !isLoggedIn ? (
-            <div className="buttons">
-            <a href="/login" className="a">Login</a>
-            <a href="/signup" className="b">Register</a>
-            </div>
-        ) : (
-            <div className="buttons">
-            <a href="/profile" className="a">Profile</a>
-            <button href="/logout" className="b" onClick={handleLogout}>Logout</button>
-            </div>
-        )
-        }
-        </nav>
+    return (
+        <>
+            <nav className="navbar">
+                <Link to="/" className="links"><h1>Homely</h1></Link>
+                <Link to="/" className="links">Home</Link>
+                {isLoggedIn ? (<Link to="/myproperties" className="links">Liked properties</Link>) : (<div></div>)}
+
+                <Link to="/results/sale" className="links">buy</Link>
+                <Link to="/results/pg" className="links">pg</Link>
+                <Link to="/results/rent" className="links">rent</Link>
+                {isLoggedIn ? (<Link to="/" className="links">add property</Link>) : (<div></div>)}
+                {isLoggedIn ? (<Link to="/myproperties" className="links">My properties</Link>) : (<div></div>)}
+                {
+                    !isLoggedIn ? (
+                        <div className="buttons">
+                            <Link to="/login" className="a">Login</Link>
+                            <Link to="/signup" className="b">Register</Link>
+                        </div>
+                    ) : (
+                        <div className="buttons">
+                            <Link to="/profile" className="a">Profile</Link>
+                            <button className="b" onClick={handleLogout}>Logout</button>
+                        </div>
+                    )
+                }
+            </nav>
         </>
     )
 }
