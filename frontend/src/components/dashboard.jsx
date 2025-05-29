@@ -1,10 +1,16 @@
-import Maps from './maps';
+import { Link } from 'react-router-dom';
+import { context } from '../context/context.js';
+import { useContext } from 'react';
+
 function Dashboard(){
+    // const {setIsLoggedIn} = useContext(context);
+    // setIsLoggedIn(false);
     return (
         <>
+        
         <div className="Hero">
             <h1>Buy Your Dream House With Us</h1>
-            <a href="">Explore</a>
+            <Link to="/results/sale">Explore</Link>
         </div>
           <div className="dashboard-stats">
             <div className="stat-box">
@@ -20,7 +26,6 @@ function Dashboard(){
             <p>Happy Clients</p>
             </div>
         </div>
-        <Maps></Maps>
         </>
     )
 }

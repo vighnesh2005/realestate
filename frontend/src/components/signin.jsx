@@ -22,6 +22,9 @@ const Signin = () => {
         password,
         email,
         phoneno,
+      },
+    {
+        withCredentials: true
       });
 
       if (result.data.message === "User already exists") {

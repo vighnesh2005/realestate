@@ -1,8 +1,27 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function MyPropertyCard({ data }) {
+  const [isDeleted,setIsDeleted] = useState(false);
+  const url = import.meta.env.VITE_URL;
+  const handledelete = async ()=>{
+    try {
+      const results = await axios.post(`${url}/api/edit/deleteprop`,{
+        propertyId:data.id
+      },{
+        withCredentials:true
+      })
+      if(results.data.message === 'success')
+        setIsDeleted(true);
+    } catch (error) {
+        console.log(error);
+    }
+  }
   return (
-    <div className="myproperty-card-outer">
+    <>
+    {!isDeleted? (
+      <div className="myproperty-card-outer">
       <img
         src={data.image}
         alt="property"
@@ -25,11 +44,15 @@ function MyPropertyCard({ data }) {
         </div>
 
         <div className="myproperty-card-edit-link">
-          <Link to={`/edit/${data.id}`}>Edit Property</Link>
+          <Link to={`/editprop/${data.id}`} style={{margin:"10px" , backgroundColor:"#0077B6", padding:"2px" , border:"solid 2px black",  borderRadius:"5px", color:"black"}}>Edit Property</Link>
+          <button onClick = {handledelete} style={{margin:"10px" , backgroundColor:"#0077B6", padding:"2px" , border:"solid 2px black",  borderRadius:"5px"}}> DELETE </button>
         </div>
       </div>
-    </div>
+    </div>  
+    ):("")}
+    </>
   );
 }
 
 export default MyPropertyCard;
+

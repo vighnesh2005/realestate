@@ -34,15 +34,19 @@ function Myproperties() {
 
     return (
         <>
-        <div>
-            {
-                props.map((property,id)=>{
-                    return      <Propertycard  key={id} data = {property}/>
-                })
-            }
-        </div>
+            {props.length > 0 ? (
+            <div>
+                {props.map((property, id) => (
+                <Propertycard key={id} data={property} />
+                ))}
+            </div>
+            ) : (
+            <div style={{ textAlign: "center", marginTop: "2rem", color: "#888" }}>
+                You have not uploaded any properties yet.
+            </div>
+            )}
         </>
-    )
+        );
 }
 
 export default Myproperties

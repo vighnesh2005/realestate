@@ -7,7 +7,7 @@ export const search = async (req,res)=>{
      userid = req.body.id;
 
 let query = ` 
-  SELECT DISTINCT ON (p.id)
+  SELECT DISTINCT ON (p.id) 
     p.*, 
     u.username AS owner, 
     ph.url AS image
@@ -78,7 +78,7 @@ export const view = async (req, res) => {
   try {
     const { propertyid } = req.body;
     const userid = req.body.userid;
-    const isLoggedIn = userid !== undefined && userid !== null && userid !== '';
+    const isLoggedIn = req.body.isLoggedIn;
 
     let detailsQuery = `
       SELECT 
@@ -101,8 +101,9 @@ export const view = async (req, res) => {
     `, [propertyid]);
 
     const { rows: reviews } = await db.query(`
-      SELECT * 
-      FROM reviews 
+      SELECT r.*,u.username,u.profilepic as profilepic
+      FROM reviews as r
+      JOIN users as u ON u.id = r.reviewer_id
       WHERE property_id = $1
       ORDER BY id DESC
     `, [propertyid]);

@@ -34,6 +34,9 @@ function Profile() {
             "Content-Type": "application/json",
           }
         });
+        if(!result.data.profilepic || result.data.profilepic === ""){
+          result.data.profilepic = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+        }
         setUser(result.data);
         setUsername(result.data.username);
       } catch (error) {
@@ -91,7 +94,7 @@ function Profile() {
       <h1>Phone-No : {user.phoneno}</h1>
 
       <div className="profile-links" style={{margin: '20px 0'}}>
-        <Link to="/add-property" className="btn-link">Add Property</Link>
+        <Link to="/addproperty" className="btn-link">Add Property</Link>
         <Link to="/myproperties" className="btn-link">My Properties</Link>
       </div>
 

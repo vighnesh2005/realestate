@@ -108,10 +108,11 @@ export const dislike = async (req, res) => {
 export const getliked = async (req,res) => {
   try {
 const results = await db.query(`
-  SELECT 
+  SELECT  DISTINCT ON (p.id)
     p.*, 
     ph.url AS image,
-    u.username AS owner
+    u.username AS owner,
+    TRUE as liked
   FROM properties AS p
   JOIN liked AS l ON l.propertyid = p.id
   LEFT JOIN (
@@ -127,7 +128,7 @@ const results = await db.query(`
 res.status(200).json(results.rows);
 
   } catch (error) {
-    console.error(err);
+    console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 }

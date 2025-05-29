@@ -31,12 +31,12 @@ function Navbar() {
             <nav className="navbar">
                 <Link to="/" className="links"><h1>Homely</h1></Link>
                 <Link to="/" className="links">Home</Link>
-                {isLoggedIn ? (<Link to="/myproperties" className="links">Liked properties</Link>) : (<div></div>)}
+                {isLoggedIn ? (<Link to="/likedprops" className="links">Liked properties</Link>) : (<div></div>)}
 
                 <Link to="/results/sale" className="links">buy</Link>
                 <Link to="/results/pg" className="links">pg</Link>
                 <Link to="/results/rent" className="links">rent</Link>
-                {isLoggedIn ? (<Link to="/" className="links">add property</Link>) : (<div></div>)}
+                {isLoggedIn ? (<Link to="/addproperty" className="links">add property</Link>) : (<div></div>)}
                 {isLoggedIn ? (<Link to="/myproperties" className="links">My properties</Link>) : (<div></div>)}
                 {
                     !isLoggedIn ? (

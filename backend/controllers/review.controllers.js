@@ -5,12 +5,20 @@ export const addreview = async (req,res) => {
         const {propertyid,rating,review} = req.body;
         const userid = req.user.id;
         
-        const result = await db.query(`
+        await db.query(`
             INSERT INTO reviews(reviewer_id,property_id,rating,review) VALUES($1,$2,$3,$4)    
-            RETURNING *       
             `,[userid,propertyid,rating,review]);
 
-        res.status(201).json(result.rows);
+        const reviews = await db.query(`
+        SELECT r.*,u.username,u.profilepic as profilepic
+        FROM reviews as r
+        JOIN users as u ON u.id = r.reviewer_id
+        WHERE property_id = $1
+        ORDER BY id DESC
+        `, [propertyid]);
+
+        res.status(201).json({reviews:reviews.rows});
+
     } catch (error) {
         console.log(error);
         res.status(400).json({message:"Internal server error"});

@@ -38,7 +38,6 @@ export const editprop = async (req,res)=>{
       parseInt(id)
     ]);
 
-    if (pictures && Array.isArray(pictures)) {
       await db.query(`DELETE FROM photos WHERE property_id = $1`, [id]);
 
       for (const url of pictures) {
@@ -47,7 +46,6 @@ export const editprop = async (req,res)=>{
           [url, parseInt(user_id), parseInt(id)]
         );
       }
-    }
 
     res.status(200).json({ message: "Property updated successfully", propertyId: id });
 
@@ -83,4 +81,15 @@ export const editprof = async (req,res)=>{
 export const getprofile = async (req,res) => {
   const user = req.user;
   res.status(200).json(user);
+}
+
+export const deleteprop = async (req,res) =>{
+  try {
+    const {propertyId} = req.body;
+
+    db.query(`DELETE FROM properties WHERE id = $1`,[propertyId]);
+    res.status(202).json({message:"success"});
+  } catch (error) {
+        res.status(400).json({message:"Internal Server error"})
+  }
 }

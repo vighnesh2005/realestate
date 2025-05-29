@@ -12,6 +12,9 @@ import {Route,Routes,BrowserRouter} from "react-router-dom"
 import Results from './components/results'
 import "./styles/addproperty.css"
 import Addproperty from './components/addproperty'
+import View from './components/view'
+import Likedproperties from './components/likedproperties';
+import Editproperty from './components/editproperty'
 
 function App() {
 
@@ -27,6 +30,10 @@ function App() {
       <Route path='/myproperties' element={<Myproperties/>}></Route>
       <Route path='/results/:type' element={<Results/>}></Route>
       <Route path='/addproperty' element={<Addproperty/>}></Route>
+      <Route path='/view/:property_id' element={<View/>}></Route>
+      <Route path='/editprop/:id' element={<Editproperty/>}></Route>
+      <Route path='/likedprops' element={<Likedproperties/>}></Route>
+      <Route path='*' element={<h1>Page Not Found</h1>}></Route>
     </Routes>
     </BrowserRouter>
     </>

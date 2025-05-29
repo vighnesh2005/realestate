@@ -49,12 +49,17 @@ function Resultprop({ data }) {
   };
 
   return (
+    <Link to={`/view/${data.id}`} className="property-link" style={{textDecoration:"none"}}>
     <div className="property-card">
       <div className="property-img-container">
         <img src={data.image} alt="property" className="property-img" />
         <span
           className={`property-like-icon${liked ? " liked" : ""}`}
-          onClick={handleLike}
+          onClick={e => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleLike();
+          }}
           title={isLoggedIn !== true ? "Login to like" : liked ? "Unlike" : "Like"}
         >
           <FontAwesomeIcon icon={liked ? solidHeart : regularHeart} />
@@ -79,6 +84,7 @@ function Resultprop({ data }) {
         </div>
       </div>
     </div>
+    </Link>
   );
 }
 
