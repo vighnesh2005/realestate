@@ -27,7 +27,7 @@ function Addproperty() {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // Wait for all uploads to finish and get the URLs
+  // Wait for all uploads  to finish and get the URLs
   const pictures = await Promise.all(images.map(img => Upload(img)));
 
   try {
@@ -71,7 +71,8 @@ const handleSubmit = async (e) => {
 };
 
   return (
-    <form className="addproperty-form" onSubmit={handleSubmit}>
+    <div className="p-10">
+    <form className="addproperty-form " onSubmit={handleSubmit}>
         <label className="custom-file-label" htmlFor="image-upload">
         Choose Images
         </label>
@@ -145,6 +146,7 @@ const handleSubmit = async (e) => {
       </select>
       <button type="submit">Add Property</button>
     </form>
+    </div>
   );
 }
 

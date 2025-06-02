@@ -147,6 +147,7 @@ const handleSubmit = async (e) => {
 };
 
   return (
+    <div className="p-10">
     <form className="addproperty-form" onSubmit={handleSubmit}>
       <label className="custom-file-label" htmlFor="image-upload">
         Choose Images
@@ -232,6 +233,7 @@ const handleSubmit = async (e) => {
       </select>
       <button type="submit" disabled={loading}>{loading ? "Updating..." : "Update Property"}</button>
     </form>
+    </div>
   );
 }
 

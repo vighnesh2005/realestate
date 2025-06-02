@@ -25,6 +25,7 @@ function Likedproperties() {
   },[])
     return (
       <>
+      <div className="p-10">
         {properties.length === 0 ? (
           <div style={{textAlign: "center", marginTop: "2rem", color: "#888"}}>
             You have not liked any properties yet.
@@ -34,6 +35,7 @@ function Likedproperties() {
             <Resultprop key={ind} data={property} />
           ))
         )}
+      </div>
       </>
     );
 }

@@ -34,6 +34,7 @@ function Myproperties() {
 
     return (
         <>
+        <div className="p-10">
             {props.length > 0 ? (
             <div>
                 {props.map((property, id) => (
@@ -45,6 +46,7 @@ function Myproperties() {
                 You have not uploaded any properties yet.
             </div>
             )}
+        </div>
         </>
         );
 }

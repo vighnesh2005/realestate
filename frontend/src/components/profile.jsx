@@ -87,35 +87,61 @@ function Profile() {
   };
 
   return (
-    <div className='profile-container'>
-      <img src={user.profilepic} alt="profilepic" />
-      <h1>Name : {user.username}</h1>
-      <h1>Email : {user.email}</h1>
-      <h1>Phone-No : {user.phoneno}</h1>
+    <div className="max-w-md mx-auto mt-10 p-8 bg-gray-100 rounded-xl shadow-lg text-center text-gray-800 font-sans">
+  <img
+    src={user.profilepic}
+    alt="profilepic"
+    className="w-32 h-32 mx-auto rounded-full object-cover border-4 border-blue-500 mb-6 shadow-md"
+  />
+  <h1 className="text-lg font-semibold mb-1">Name : {user.username}</h1>
+  <h1 className="text-lg font-semibold mb-1">Email : {user.email}</h1>
+  <h1 className="text-lg font-semibold mb-6">Phone-No : {user.phoneno}</h1>
 
-      <div className="profile-links" style={{margin: '20px 0'}}>
-        <Link to="/addproperty" className="btn-link">Add Property</Link>
-        <Link to="/myproperties" className="btn-link">My Properties</Link>
-      </div>
+  <div className="flex justify-center gap-6 mb-8">
+    <Link
+      to="/addproperty"
+      className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded transition"
+    >
+      Add Property
+    </Link>
+    <Link
+      to="/myproperties"
+      className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded transition"
+    >
+      My Properties
+    </Link>
+  </div>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder='username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
+  <form onSubmit={handleSubmit} className="space-y-5 max-w-sm mx-auto">
+    <input
+      type="text"
+      placeholder="username"
+      value={username}
+      onChange={(e) => setUsername(e.target.value)}
+      required
+      className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
 
-        <input
-          type="file"
-          onChange={(e) => setProfile(e.target.files[0])}
-          accept="image/*"
-        />
+    <input
+      type="file"
+      onChange={(e) => setProfile(e.target.files[0])}
+      accept="image/*"
+      className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4
+                 file:rounded file:border-0
+                 file:text-sm file:font-semibold
+                 file:bg-blue-100 file:text-blue-700
+                 hover:file:bg-blue-200"
+    />
 
-        <button type="submit">Update Profile</button>
-      </form>
-    </div>
+    <button
+      type="submit"
+      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition"
+    >
+      Update Profile
+    </button>
+  </form>
+</div>
+
   );
 }
 
